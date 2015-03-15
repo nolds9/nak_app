@@ -1,0 +1,24 @@
+<center>
+<form id="search">
+  <h1>Find your next Healthy Eats!</h1>
+  <input type="search" name="query">
+  <input type="submit" value="Submit">
+</form>
+
+<div class="preview" id="preview">
+<% if @result %>
+  <% if @result.present? %>
+  	<ul>
+  		<% @result.each do |result| %>
+   		<li><%= image_tag result['recipe']['image'] %></li>
+    	<p><%= link_to result['recipe']['label'], result['recipe']['url'] %></p>
+    	<p><%= result['recipe']['calories'] %> calories</p>
+		<% end %>
+    </ul>
+  <% else %>
+    <p>Whoops, we couldn't find that one.</p>
+  <% end %>
+
+<% end %> 
+</div>
+</center>
