@@ -10,7 +10,7 @@
   <% if @result.present? %>
   	<ul>
   		<% @result.each do |result| %>
-      <li> <%= link_to result['speaking'], result %></li>
+      <li> <%= link_to result['speaking'], @quote %></li>
 		<% end %>
     </ul>
   <% else %>

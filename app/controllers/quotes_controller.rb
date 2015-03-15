@@ -1,15 +1,27 @@
 class QuotesController < ApplicationController
 
   def index
-    if params[:query]
-      query = params[:query].gsub(' ', '+')
-      #response = HTTParty.get("https://api.edamam.com/search?q=#{query}")
-      response = HTTParty.get("http://capitolwords.org/api/1/text.json?phrase=#{query}&apikey=83af50945e0c4f90861fb472e7d148e3")
+    if params[:quote]
+      quote = params[:quote].gsub(' ', '+')
+      
+      response = HTTParty.get "https://yoda.p.mashape.com/yoda?sentence=#{quote}",
+       headers:{
+       "X-Mashape-Key" => "Q2fl9yERfAmsh9l9IkHAVzTY8Jqbp1YjlVZjsna0jbJkFrQrUL",
+       "Accept" => "text/plain"
+       } 
       result = JSON.parse(response.body)
-      @result = result['results']
+      @quote = result
     else
       @result = nil
     end
-  end
 
+
+    # These code snippets use an open-source library.
+    # response = HTTParty.get "https://yoda.p.mashape.com/yoda?sentence=You+will+learn+how+to+speak+like+me+someday.++Oh+wait.",
+    # headers:{
+    # "X-Mashape-Key" => "Q2fl9yERfAmsh9l9IkHAVzTY8Jqbp1YjlVZjsna0jbJkFrQrUL",
+    # "Accept" => "text/plain"
+    # } 
+
+  end
 end

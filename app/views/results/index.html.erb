@@ -1,22 +1,25 @@
 <center>
 <form id="search">
-  <h1>Search Phrase</h1>
+  <h1>Search for your favorite phrase in congressional docs!</h1>
   <input type="search" name="query">
   <input type="submit" value="Submit">
 </form>
+</center>
 
 <div class="preview" id="preview">
 <% if @result %>
   <% if @result.present? %>
-  	<ul>
   		<% @result.each do |result| %>
-      <li> <%= link_to result['speaking'], result %></li>
+     <p>
+      <%= result['speaker_raw'] %>
+      referenced  "<%= @query %>" here </p>
+      <p><%= link_to result['title'], result['origin_url'] %></p> 
+
 		<% end %>
-    </ul>
-  <% else %>
+
+    <% else %>
     <p>Whoops, we couldn't find that one.</p>
   <% end %>
 
 <% end %> 
 </div>
-</center>
